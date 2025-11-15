@@ -220,7 +220,7 @@ export default function PastEventsPage() {
 
         <div className="container relative px-4 sm:px-6">
           <Reveal className="text-center space-y-4">
-            <div className="mx-auto rounded-2xl bg-white px-5 py-1 text-xs sm:text-sm uppercase tracking-[0.5em] text-brand-900 shadow-sm md:bg-brand-900 md:text-white md:shadow-none">
+            <div className="mx-auto rounded-2xl bg-white px-5 py-1 text-xs sm:text-sm uppercase tracking-[0.5em] text-brand-900 shadow-sm md:bg-brand-900 md:text-white md:shadow-none md:py-2 md:text-lg">
               Event Archive
             </div>
             <p className="text-white max-w-3xl mx-auto md:text-gray-600">
