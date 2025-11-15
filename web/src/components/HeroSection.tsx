@@ -70,7 +70,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="text-[1.41rem] font-semibold leading-tight drop-shadow-lg text-white"
+                className="text-[1.35rem] font-semibold leading-tight drop-shadow-lg text-white"
               >
                 Dr. Roshni Sodhi
               </motion.h1>
@@ -156,7 +156,7 @@ export default function HeroSection() {
                   whileTap={{ scale: 0.98 }}
                   className="desktop-cta-pulse inline-flex items-center justify-center rounded-3xl bg-brand-900 px-9 sm:px-11 py-4 sm:py-5 text-lg sm:text-xl font-semibold text-white shadow-xl shadow-brand-900/30 transition-colors hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
-                  {cta.label}
+                  <span>{cta.label}</span>
                 </motion.a>
               ))}
             </div>
