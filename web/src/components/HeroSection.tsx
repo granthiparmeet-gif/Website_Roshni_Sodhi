@@ -124,12 +124,12 @@ export default function HeroSection() {
         {/* Desktop/Tablet layout */}
         <div className="hidden md:block">
           <div className="container flex flex-col gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 py-12 sm:py-16 md:py-24">
-            <div className="flex flex-col items-center gap-4 sm:gap-5 md:gap-6 max-w-2xl md:ml-auto text-center md:text-right">
+            <div className="flex flex-col items-end gap-4 sm:gap-5 md:gap-6 max-w-2xl md:ml-auto text-right">
               <motion.h1
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45 }}
-                className="text-[clamp(2rem,5vw,3.75rem)] font-bold leading-tight drop-shadow-xl font-sans tracking-tight"
+                className="text-[clamp(2.4rem,6vw,4.5rem)] font-bold leading-tight drop-shadow-xl font-sans tracking-tight"
               >
                 Dr. Roshni Sodhi
               </motion.h1>
@@ -139,11 +139,12 @@ export default function HeroSection() {
                 transition={{ delay: 0.15, duration: 0.5 }}
                 className="text-base sm:text-lg md:text-xl text-white/90"
               >
-                Lactation Professional, Pediatrician &amp; EQ Coach
+                <span className="hidden md:inline">Lactation Professional, Pediatrician &amp; EQ Coach</span>
+                <span className="md:hidden">Lactation Professional, Pediatrician &amp; EQ Coach</span>
               </motion.h2>
             </div>
 
-            <div className="hidden md:flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto justify-center md:justify-end">
+            <div className="hidden md:flex md:ml-auto flex-col sm:flex-row gap-4 sm:gap-5 justify-end translate-x-8 lg:translate-x-12 text-right">
               {[
                 { href: '/appointment?type=video', label: 'Video Call Doctor' },
                 { href: '/appointment?type=visit', label: 'Visit Doctor' },
@@ -153,14 +154,14 @@ export default function HeroSection() {
                   href={cta.href}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center rounded-xl bg-brand-900 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base font-semibold text-white shadow-lg shadow-brand-900/30 transition-colors hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="desktop-cta-pulse inline-flex items-center justify-center rounded-3xl bg-brand-900 px-9 sm:px-11 py-4 sm:py-5 text-lg sm:text-xl font-semibold text-white shadow-xl shadow-brand-900/30 transition-colors hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   {cta.label}
                 </motion.a>
               ))}
             </div>
 
-            <dl className="hidden md:grid md:ml-auto grid-cols-1 md:grid-cols-2 gap-3 text-left md:text-right text-white/85 text-sm sm:text-base">
+            <dl className="hidden md:grid md:ml-auto grid-cols-1 md:grid-cols-2 gap-3 text-right text-white/85 text-sm sm:text-base justify-items-end">
               {heroHighlights.map((item, index) => (
                 <div
                   key={item.value}
