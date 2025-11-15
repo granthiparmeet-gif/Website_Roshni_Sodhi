@@ -73,48 +73,43 @@ function AnimatedQualificationsOnScroll() {
     const listNode = listRef.current;
     if (!sectionNode || !listNode) return;
     if (typeof window === 'undefined') return;
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
 
-    let cleanupObserver: (() => void) | undefined;
+    const points = listNode.querySelectorAll<HTMLElement>('.about-point');
+    if (!points.length) return;
 
-    const startObserver = () => {
-      if (!window.matchMedia('(max-width: 768px)').matches) return;
+    let started = false;
 
-      const points = listNode.querySelectorAll<HTMLElement>('.about-point');
-      if (!points.length) return;
-
-      let started = false;
-      const observer = new window.IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (started || !entry.isIntersecting) return;
-            started = true;
-            points.forEach((point, index) => {
-              point.style.animationDelay = `${index * 0.35}s`;
-              point.classList.add('animate');
-            });
-          });
-        },
-        { threshold: 0.2 }
-      );
-
-      observer.observe(sectionNode);
-      return () => observer.disconnect();
+    const handleScroll = () => {
+      if (started) return;
+      const rect = sectionNode.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.85) {
+        triggerAnimation();
+      }
     };
 
-    const handleReady = () => {
-      cleanupObserver?.();
-      cleanupObserver = startObserver();
+    const onScroll = () => {
+      handleScroll();
     };
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', handleReady);
-    } else {
-      handleReady();
+    const triggerAnimation = () => {
+      if (started) return;
+      started = true;
+      points.forEach((point, index) => {
+        point.style.animationDelay = `${index * 0.35}s`;
+        point.classList.add('animate');
+      });
+      window.removeEventListener('scroll', onScroll);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    if (window.scrollY > 0) {
+      handleScroll();
     }
 
     return () => {
-      document.removeEventListener('DOMContentLoaded', handleReady);
-      cleanupObserver?.();
+      window.removeEventListener('scroll', onScroll);
     };
   }, []);
 
