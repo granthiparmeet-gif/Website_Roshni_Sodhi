@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Moontime&display=swap');
+@font-face {
+  font-family: 'Amsterdam Handwriting';
+  src: url('/AmsterdamHandwriting.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 255 255 255;
+  --foreground: 17 24 39;
+  --muted: 107 114 128;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  color: rgb(var(--foreground));
+  background: radial-gradient(circle at top, rgba(80,157,255,0.18), transparent 45%), radial-gradient(circle at 20% 80%, rgba(15,63,140,0.12), transparent 35%), #f7f9fc;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 1200px;
+}
+
+.logo-font {
+  font-family: 'Amsterdam Handwriting', 'Moontime', var(--font-playfair), 'Times New Roman', serif !important;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.mobile-theme-shell {
+  background: transparent;
+}
+
+.testimonials-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.event-bullet {
+  position: relative;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+}
+
+.event-bullet::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: #2563eb;
+}
+
+.testimonials-card p {
+  color: #0f172a;
+}
+
+@media (max-width: 767px) {
+  .testimonials-card p,
+  .mobile-theme-shell .testimonials-card p {
+    color: #000 !important;
+  }
+  .testimonials-card {
+    border-radius: 36px !important;
+    overflow: hidden;
+  }
+  .testimonials-card .shadow-sm {
+    border-radius: 36px !important;
+  }
+  .testimonials-card .bg-brand-900\/5 {
+    border-radius: 36px !important;
+  }
+  .testimonials-card [class*="rounded-\\[28px\\]"] {
+    border-radius: 36px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    background: linear-gradient(180deg, #020617 0%, #0f172a 45%, #020617 100%);
+  }
+
+  .mobile-theme-shell {
+    background: rgba(15, 23, 42, 0.65);
+    border-radius: 1.75rem;
+    border: 1px solid rgba(248, 250, 252, 0.2);
+    box-shadow: 0 25px 60px rgba(2, 6, 23, 0.55);
+  }
+
+  .mobile-theme-shell h2,
+  .mobile-theme-shell p {
+    color: #e2e8f0;
+  }
+
+  .testimonials-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+  }
+}
+
+@media (max-width: 640px) {
+  .mobile-theme-shell {
+    border-radius: 1.25rem;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .qualification-card {
+    animation-name: slideInFromLeft;
+    animation-duration: 0.6s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes phone-ring {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-12deg); }
+  40% { transform: rotate(10deg); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.phone-ring {
+  display: inline-block;
+  transform-origin: top right;
+  animation: phone-ring 1.4s ease-in-out infinite;
+}

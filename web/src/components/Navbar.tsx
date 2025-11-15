@@ -15,7 +15,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-gray-200 ${elevated ? 'shadow-sm' : ''}`}>
+    <header className={`sticky top-0 z-40 bg-white backdrop-blur border-b border-gray-200 ${elevated ? 'shadow-sm' : ''}`}>
       {/* Top info bar */}
       <div className="hidden md:block bg-brand-50 text-brand-900">
         <div className="container flex items-center justify-between py-2 text-sm">
@@ -26,19 +26,27 @@ export default function Navbar() {
             </span>
           </div>
           <a href="tel:9049005464" className="inline-flex items-center gap-2 font-medium hover:underline">
-            <svg width="16" height="16" viewBox="0 0 24 24" className="text-brand-700"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.4 22 2 13.6 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" className="text-brand-700 phone-ring"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.4 22 2 13.6 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2Z"/></svg>
             9049005464
           </a>
         </div>
       </div>
 
       {/* Main bar */}
-      <div className="container flex items-center justify-between py-3 sm:py-4 px-4 sm:px-6">
-        <Link href="/" className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold font-playfair text-brand-900 hover:text-brand-700 transition-colors">Dr. Roshni Sodhi</Link>
+        <div className="container flex items-center justify-between py-2 sm:py-3 md:py-6 px-4 sm:px-6">
+          <Link
+            href="/"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-brand-900 hover:text-brand-700 transition-colors logo-font"
+          >
+            Dr. Roshni Sodhi
+          </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm">
           <Link href="/about" className="hover:underline">FAQ</Link>
           <Link href="/past-events" className="hover:underline">Past Events</Link>
-          <Link href="/contact" className="rounded bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 transition-colors">Contact</Link>
+          <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-2 text-white shadow-lg shadow-brand-900/30 transition-all hover:-translate-y-0.5 hover:bg-brand-700">
+            <span className="inline-block h-2 w-2 rounded-full bg-emerald-300 animate-pulse" />
+            Contact
+          </Link>
         </nav>
         <button
           type="button"
@@ -55,12 +63,31 @@ export default function Navbar() {
           <div className="container py-3 flex flex-col gap-3">
             <Link href="/about" onClick={() => setOpen(false)} className="py-2">FAQ</Link>
             <Link href="/past-events" onClick={() => setOpen(false)} className="py-2">Past Events</Link>
-            <a href="tel:9049005464" onClick={() => setOpen(false)} className="font-medium py-2">Call: 9049005464</a>
+            <a
+              href="tel:9049005464"
+              onClick={() => setOpen(false)}
+              className="font-medium py-2 flex items-center gap-2 text-gray-900 hover:text-brand-700"
+              aria-label="Call Dr. Roshni Sodhi"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                className="text-brand-600 phone-ring"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.4 22 2 13.6 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2Z"
+                />
+              </svg>
+              <span className="font-semibold text-brand-900">9049005464</span>
+            </a>
             <div className="text-sm text-gray-600 py-2">
               <p>Dr.Sodhi&apos;s Kewalcare Hospital</p>
               <p>Osmanpura, Aurangabad, Maharashtra</p>
             </div>
-            <Link href="/contact" onClick={() => setOpen(false)} className="rounded bg-brand-600 text-white px-4 py-2 w-max text-center">Contact</Link>
+            <Link href="/contact" onClick={() => setOpen(false)} className="rounded-full bg-brand-600 text-white px-4 py-2 w-max text-center shadow hover:bg-brand-700 transition-colors">Contact</Link>
           </div>
         </div>
       )}

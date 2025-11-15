@@ -31,12 +31,12 @@ function TestimonialCard({
       transition={{ duration: 0.4, delay: idx * 0.05 }}
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.99 }}
-      className={`relative ${className}`}
+      className={`relative ${className} testimonials-card`}
     >
       <div className="rounded-[28px] bg-brand-900/5 p-1">
         <div className="relative rounded-[28px] bg-white shadow-sm px-4 sm:px-6 md:px-10 pt-8 sm:pt-10 pb-12 sm:pb-16 overflow-visible hover:shadow-md transition-shadow">
-          <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] items-start gap-4 sm:gap-6 md:gap-10">
-            <div className="relative mx-auto md:mx-0 md:-ml-8">
+          <div className="flex flex-col md:flex-row md:items-start md:gap-10">
+            <div className="flex flex-col items-center md:items-start gap-4">
               <div className="relative h-24 w-24 sm:h-28 sm:w-28 md:h-40 md:w-40 rounded-full overflow-hidden ring-4 ring-white shadow-md border-4 border-brand-900/30">
                 {t.image ? (
                   <Image
@@ -52,23 +52,23 @@ function TestimonialCard({
                   </div>
                 )}
               </div>
+              <div className="mt-1 inline-block bg-white rounded-2xl shadow-md px-4 sm:px-6 py-2 sm:py-3 font-semibold text-sm sm:text-base text-brand-900 border border-gray-200 text-center w-full md:w-auto">
+                {t.author}
+              </div>
+              <div className="flex items-center justify-center gap-2 text-amber-500 text-xl sm:text-2xl" aria-label="5 out of 5 stars">
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+              </div>
             </div>
 
-            <p className="text-gray-700 leading-relaxed text-base sm:text-lg text-center md:text-left">
-              {t.text}
-            </p>
-          </div>
-
-          <div className="mt-4 sm:mt-6 inline-block bg-white rounded-2xl shadow-md px-4 sm:px-6 py-2 sm:py-3 font-semibold text-sm sm:text-base text-brand-900 border border-gray-200">
-            {t.author}
-          </div>
-
-          <div className="mt-4 sm:mt-6 flex items-center justify-center md:justify-start gap-2 text-amber-500 text-xl sm:text-2xl" aria-label="5 out of 5 stars">
-            <span>★</span>
-            <span>★</span>
-            <span>★</span>
-            <span>★</span>
-            <span>★</span>
+            <div className="mt-4 md:mt-0 md:flex-1">
+              <p className="text-black leading-relaxed text-base sm:text-lg text-center md:text-left">
+                {t.text}
+              </p>
+            </div>
           </div>
 
           <div className="hidden md:flex absolute -right-8 -bottom-8 h-28 w-28 md:h-32 md:w-32 rounded-full bg-brand-900 shadow-md items-center justify-center pointer-events-none">
@@ -84,21 +84,14 @@ function TestimonialCard({
 
 export default function Testimonials() {
   return (
-    <section className="container py-8 sm:py-12 md:py-16 px-4 sm:px-6">
+    <section className="container py-8 sm:py-12 md:py-16 px-4 sm:px-6 mobile-theme-shell">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">Testimonials</h2>
       <p className="mt-2 text-sm sm:text-base text-gray-600">What patients and parents say.</p>
 
-      <div className="mt-8 md:hidden -mx-4">
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-6">
-          {testimonials.map((t, idx) => (
-            <TestimonialCard
-              key={t.author + idx}
-              testimonial={t}
-              idx={idx}
-              className="min-w-[80%] max-w-[360px] flex-shrink-0"
-            />
-          ))}
-        </div>
+      <div className="mt-8 md:hidden flex flex-col gap-6">
+        {testimonials.map((t, idx) => (
+          <TestimonialCard key={t.author + idx} testimonial={t} idx={idx} />
+        ))}
       </div>
 
       <div className="mt-8 hidden md:grid gap-6 sm:gap-8 md:grid-cols-2">

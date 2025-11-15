@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 
-const UPI_QR_URL = "/dummy-phonepe-qr.png"; // Put dummy QR here
+const UPI_QR_URL = "/Phonepay.jpeg";
 
 // Generate a dummy time (tomorrow at a random hour)
 function getDummyTime() {
@@ -32,6 +32,7 @@ function AppointmentPageContent() {
   const [bookingEmail, setBookingEmail] = useState("");
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
   const [appointmentTime, setAppointmentTime] = useState("");
+  const [calendlyUrl, setCalendlyUrl] = useState<string | null>(null);
 
   // Set dummy time when component mounts (for visit appointments)
   useEffect(() => {
@@ -39,6 +40,18 @@ function AppointmentPageContent() {
       setAppointmentTime(getDummyTime());
     }
   }, [appointmentType]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const host = window.location.hostname || 'localhost';
+    const params = new URLSearchParams({
+      embed_domain: host,
+      embed_type: 'Inline',
+      hide_event_type_details: '1',
+      primary_color: '0a66ff',
+    });
+    setCalendlyUrl(`https://calendly.com/granthi-parmeet/new-meeting?${params.toString()}`);
+  }, []);
 
   // Simulate webhook arrival after payment
   function simulateWebhook() {
@@ -64,13 +77,21 @@ function AppointmentPageContent() {
           >
             <div className="max-w-2xl mx-auto px-4">
               <div className="relative aspect-[4/5] sm:aspect-video w-full bg-gray-100 rounded-2xl mb-4 overflow-hidden">
-                <iframe
-                  src="https://calendly.com/granthi-parmeet"
-                  title="Appointment booking calendar"
-                  className="absolute inset-0 h-full w-full border-none"
-                  allow="camera; microphone; fullscreen"
-                  onLoad={() => setBookingEmail("patient@email.com")}
-                ></iframe>
+                {calendlyUrl ? (
+                  <iframe
+                    key={calendlyUrl}
+                    src={calendlyUrl}
+                    title="Appointment booking calendar"
+                    className="absolute inset-0 h-full w-full border-none"
+                    allow="camera; microphone; fullscreen"
+                    referrerPolicy="origin"
+                    onLoad={() => setBookingEmail("patient@email.com")}
+                  ></iframe>
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-sm">
+                    Loading scheduler…
+                  </div>
+                )}
               </div>
               <button className="mt-6 px-6 py-3 bg-brand-600 hover:bg-brand-700 rounded text-white font-medium shadow w-full sm:w-auto" onClick={() => setStep(2)}>
                 Next: Pay &rarr;
@@ -89,8 +110,22 @@ function AppointmentPageContent() {
             className="max-w-xl mx-auto mt-10 shadow rounded-2xl p-6 sm:p-8 text-center bg-white px-4 sm:px-0"
           >
             <h2 className="text-2xl font-semibold">Scan & Pay with PhonePe</h2>
-            <img src={UPI_QR_URL} alt="Pay via UPI QR" className="mx-auto mt-6 rounded-xl border shadow w-48 h-48 sm:w-56 sm:h-56 bg-gray-100" />
-            <p className="mt-4 text-gray-700">Use any UPI app. Enter your email/phone in the note to match your slot.</p>
+            <div
+              className="mx-auto mt-6 w-fit rounded-[28px] border border-gray-200 bg-white p-3 sm:p-4 shadow-xl"
+              style={{ minWidth: "220px", maxWidth: "240px" }}
+            >
+              <p className="mb-3 text-sm font-medium text-gray-600">Pay via UPI QR</p>
+              <img
+                src={UPI_QR_URL}
+                alt="Pay via UPI QR"
+                className="block max-w-full h-auto rounded-2xl"
+                style={{ imageRendering: "auto" }}
+              />
+            </div>
+            <div className="mt-4 text-gray-700 space-y-1">
+              <p>Use any UPI app.</p>
+              <p>Enter the patient&apos;s name and phone number in the note to match your slot.</p>
+            </div>
             <button
               className="mt-6 inline-block px-6 py-3 bg-brand-600 text-white font-semibold rounded shadow hover:bg-brand-700"
               onClick={() => { setStep(3); simulateWebhook(); }}

@@ -1,0 +1,14 @@
+
+> web@1.0.0 dev
+> next dev --hostname 0.0.0.0 --port 3000 --hostname 0.0.0.0 --port 3001
+
+ ⨯ Failed to start server
+Error: listen EPERM: operation not permitted 0.0.0.0:3001
+    at <unknown> (Error: listen EPERM: operation not permitted 0.0.0.0:3001) {
+  code: 'EPERM',
+  errno: -1,
+  syscall: 'listen',
+  address: '0.0.0.0',
+  port: 3001
+}
+[?25h

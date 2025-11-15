@@ -31,43 +31,63 @@ export const hero = {
 export const qa = [
   {
     q: 'Who is a lactation professional?',
-    a: 'A lactation professional is a healthcare expert trained to help parents breastfeed successfully — from getting started after birth to solving challenges like latch issues, pain, or low milk supply.',
+    answer:
+      'A lactation professional is a healthcare expert trained to help parents breastfeed successfully — from getting started after birth to solving challenges like latch issues, pain, or low milk supply.',
   },
   {
     q: 'When should I learn about breastfeeding?',
-    a: 'The best time is during pregnancy, ideally in the last trimester, so you feel confident and prepared before your baby arrives.',
+    answer:
+      'The best time is during pregnancy, ideally in the last trimester, so you feel confident and prepared before your baby arrives.',
   },
   {
     q: 'When should I see a lactation consultant?',
-    a: `You can consult one:\n\n• During pregnancy — for education and planning.\n• Right after birth — to start breastfeeding correctly.\n• Within the first week — to check baby’s latch and feeding.\n• Anytime — if you have pain, low milk supply, or other feeding worries.`,
+    answer: 'You can consult one:',
+    list: [
+      'During pregnancy — for education and planning.',
+      'Right after birth — to start breastfeeding correctly.',
+      'Within the first week — to check baby’s latch and feeding.',
+      'Anytime — if you have pain, low milk supply, or other feeding worries.',
+    ],
   },
   {
     q: 'Is breastfeeding painful?',
-    a: 'No. Breastfeeding shouldn’t hurt. If it does, it usually means baby’s latch or position needs adjusting — something a lactation consultant can easily help with.',
+    answer:
+      'No. Breastfeeding shouldn’t hurt. If it does, it usually means baby’s latch or position needs adjusting — something a lactation consultant can easily help with.',
   },
   {
     q: 'What’s the most important breastfeeding technique to learn?',
-    a: 'A good latch. When baby’s mouth covers most of the areola (not just the nipple), feeding is comfortable, and milk flows well.',
+    answer:
+      'A good latch. When baby’s mouth covers most of the areola (not just the nipple), feeding is comfortable, and milk flows well.',
   },
   {
     q: 'How do I know my baby is getting enough milk?',
-    a: 'Watch for these signs:\n\n• Baby swallows during feeds.\n• 6–8 wet diapers a day (after day 5).\n• Steady weight gain.\n• Baby seems relaxed or sleepy after feeding.',
+    answer: 'Watch for these signs:',
+    list: [
+      'Baby swallows during feeds.',
+      '6–8 wet diapers a day (after day 5).',
+      'Steady weight gain.',
+      'Baby seems relaxed or sleepy after feeding.',
+    ],
   },
   {
     q: 'How often should I breastfeed?',
-    a: 'Newborns usually feed 8–12 times in 24 hours. Feed on demand — whenever baby shows hunger cues — rather than by the clock.',
+    answer:
+      'Newborns usually feed 8–12 times in 24 hours. Feed on demand — whenever baby shows hunger cues — rather than by the clock.',
   },
   {
     q: 'What if my milk supply seems low?',
-    a: 'Feed or pump more often, check for a deep latch, and try skin-to-skin contact. If you’re still concerned, a lactation professional can assess and help you boost supply safely.',
+    answer:
+      'Feed or pump more often, check for a deep latch, and try skin-to-skin contact. If you’re still concerned, a lactation professional can assess and help you boost supply safely.',
   },
   {
     q: 'Should I breastfeed if I’m sick?',
-    a: 'Usually yes! Most common illnesses (like colds or fever) don’t require stopping. Your antibodies actually help protect your baby.',
+    answer:
+      'Usually yes! Most common illnesses (like colds or fever) don’t require stopping. Your antibodies actually help protect your baby.',
   },
   {
     q: 'What’s the most important breastfeeding advice?',
-    a: 'Exclusive breastfeeding for the first 6 months — no water or formula — gives your baby complete nutrition and immune protection.',
+    answer:
+      'Exclusive breastfeeding for the first 6 months — no water or formula — gives your baby complete nutrition and immune protection.',
   },
 ];
 
