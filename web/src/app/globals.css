@@ -47,6 +47,107 @@ body {
   margin-bottom: 0 !important;
 }
 
+.about-section {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.about-point {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: zoomBounce 0.6s ease-out forwards;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
+  margin-bottom: 0;
+}
+
+.about-point.animate {
+  animation-play-state: running;
+}
+
+.about-point p {
+  margin: 0;
+}
+
+@keyframes zoomBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomBounceMobile {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-point {
+    opacity: 0 !important;
+    transform: scale(0.5) !important;
+    visibility: hidden !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .about-point.mobile-animate {
+    animation: zoomBounceMobile 0.6s ease-out forwards !important;
+    animation-fill-mode: forwards !important;
+    visibility: visible !important;
+  }
+
+  .qualification-card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .about-points-container {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .about-point {
+    margin-bottom: 12px !important;
+    padding: 0 !important;
+  }
+
+  .about-grid,
+  .about-points-wrapper {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .about-grid {
+    row-gap: 12px !important;
+  }
+
+  .about-point p,
+  .about-point span {
+    margin: 0 !important;
+  }
+}
+
 @media (min-width: 640px) {
   .container {
     padding-left: 1.5rem;

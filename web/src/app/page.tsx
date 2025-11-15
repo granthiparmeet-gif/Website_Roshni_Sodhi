@@ -3,9 +3,8 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import Footer from '@/components/Footer';
 import Testimonials from '@/components/Testimonials';
-import Reveal from '@/components/Reveal';
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { about } from '@/lib/content';
 
@@ -14,11 +13,10 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <main className="pt-4 pb-32 md:pb-0">
+      <main className="pt-4 pb-8 md:pb-0">
+        <div className="hidden md:block h-4 bg-black" aria-hidden="true" />
         <HeroSection />
-        <Reveal className="container mx-auto max-w-4xl mt-10 sm:mt-14 mb-10 px-4 sm:px-6">
-          <AnimatedQualificationsOnScroll />
-        </Reveal>
+        <AnimatedQualificationsOnScroll />
 
         {/* Q&A REMOVE from homepage */}
 
@@ -31,69 +29,114 @@ export default function Page() {
 }
 
 function AnimatedQualificationsOnScroll() {
-  const [cardIndex, setCardIndex] = useState(-1);
-  const [hasViewed, setHasViewed] = useState(false);
-  const observerRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLUListElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
-  // Trigger as soon as section is in view
   useEffect(() => {
-    const node = observerRef.current;
-    if (!node) return;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasViewed(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
+    const sectionNode = sectionRef.current;
+    const listNode = listRef.current;
+    if (!sectionNode || !listNode) return;
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+
+    const points = listNode.querySelectorAll<HTMLElement>('.about-point');
+
+    const runAnimation = () => {
+      points.forEach((point, index) => {
+        point.style.animationDelay = `${index * 0.25}s`;
+        point.classList.add('animate');
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      let animated = false;
+      const observer = new window.IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (animated || !entry.isIntersecting) return;
+            animated = true;
+            runAnimation();
+            observer.disconnect();
+          });
+        },
+        { threshold: 0.25 }
+      );
+      observer.observe(sectionNode);
+      return () => observer.disconnect();
+    }
+
+    runAnimation();
   }, []);
 
-  // Reveal cards one-by-one once viewed
   useEffect(() => {
-    if (!hasViewed) return;
-    setCardIndex(-1);
-    const interval = setInterval(() => {
-      setCardIndex((prev) => {
-        if (prev >= about.qualifications.length - 1) {
-          clearInterval(interval);
-          return prev;
-        }
-        return prev + 1;
-      });
-    }, 330);
-    return () => clearInterval(interval);
-  }, [hasViewed]);
+    const sectionNode = sectionRef.current;
+    const listNode = listRef.current;
+    if (!sectionNode || !listNode) return;
+    if (typeof window === 'undefined') return;
+
+    let cleanupObserver: (() => void) | undefined;
+
+    const startObserver = () => {
+      if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+      const points = listNode.querySelectorAll<HTMLElement>('.about-point');
+      if (!points.length) return;
+
+      let started = false;
+      const observer = new window.IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (started || !entry.isIntersecting) return;
+            started = true;
+            points.forEach((point, index) => {
+              point.style.animationDelay = `${index * 0.35}s`;
+              point.classList.add('mobile-animate');
+            });
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      observer.observe(sectionNode);
+      return () => observer.disconnect();
+    };
+
+    const handleReady = () => {
+      cleanupObserver?.();
+      cleanupObserver = startObserver();
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', handleReady);
+    } else {
+      handleReady();
+    }
+
+    return () => {
+      document.removeEventListener('DOMContentLoaded', handleReady);
+      cleanupObserver?.();
+    };
+  }, []);
 
   return (
-    <div
-      ref={observerRef}
-      className="rounded-3xl bg-[#e4edff] md:bg-white/70 backdrop-blur px-5 sm:px-8 py-6 sm:py-8 shadow-xl border border-white/60 mt-8 md:mt-12"
+    <section
+      id="about"
+      ref={sectionRef}
+      className="about-section container mx-auto max-w-4xl mt-10 sm:mt-14 mb-10 px-4 sm:px-6 rounded-3xl bg-[#e4edff] md:bg-white/70 backdrop-blur py-6 sm:py-8 shadow-xl border border-white/60"
     >
       <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-3">About Me</h2>
       <p className="text-base sm:text-lg text-gray-700 mb-5 sm:mb-7">{about.intro}</p>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2">
-        {about.qualifications.map((q, i) => (
-          <motion.div
+      <ul ref={listRef} className="about-grid grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2">
+        {about.qualifications.map((q) => (
+          <li
             key={q}
-            initial="hidden"
-            animate={cardIndex >= i ? 'visible' : 'hidden'}
-            variants={{
-              hidden: { opacity: 0, y: 24 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            transition={{ duration: 0.45, type: 'spring' }}
-            className="qualification-card group relative overflow-hidden rounded-2xl border border-white/60 bg-white/90 shadow-lg px-3 pt-2 pb-2 sm:px-5 sm:py-4 text-gray-900 text-sm sm:text-base md:text-lg font-normal md:min-h-[120px]"
-            style={{ animationDelay: `${i * 0.12}s` }}
+            className="about-point qualification-card group relative overflow-hidden rounded-2xl border border-white/60 bg-white/90 shadow-lg text-gray-900 text-sm sm:text-base md:text-lg font-normal md:flex md:h-full md:items-center md:min-h-[5.25rem]"
           >
-            <p>{q}</p>
-          </motion.div>
+            <p className="md:w-full pl-3 md:pl-4">{q}</p>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 }
 
