@@ -90,7 +90,7 @@ function AnimatedQualificationsOnScroll() {
             started = true;
             points.forEach((point, index) => {
               point.style.animationDelay = `${index * 0.35}s`;
-              point.classList.add('mobile-animate');
+              point.classList.add('animate');
             });
           });
         },
