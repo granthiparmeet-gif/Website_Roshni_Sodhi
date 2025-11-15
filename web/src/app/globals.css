@@ -40,6 +40,13 @@ body {
   font-family: 'Amsterdam Handwriting', 'Moontime', var(--font-playfair), 'Times New Roman', serif !important;
 }
 
+.hero-wrapper {
+  height: auto !important;
+  min-height: auto !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 @media (min-width: 640px) {
   .container {
     padding-left: 1.5rem;

@@ -9,8 +9,8 @@ const heroHighlights = [
 
 export default function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-900 text-white lg:bg-black min-h-[580px] sm:min-h-[680px] md:min-h-[65vh]">
-      {/* Blurred backdrop for mobile to avoid blank space */}
+    <section className="hero-wrapper relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-900 text-white lg:bg-black">
+      {/* Desktop backdrop */}
       <Image
         src="/Roshni_Sodhi.jpeg"
         alt=""
@@ -19,9 +19,8 @@ export default function HeroSection() {
         sizes="100vw"
         quality={60}
         aria-hidden
-        className="absolute inset-0 h-full w-full scale-110 transform object-cover object-center opacity-50 blur-3xl md:hidden"
+        className="absolute inset-0 hidden h-full w-full scale-110 transform object-cover object-center opacity-50 blur-3xl md:block"
       />
-      {/* Foreground image */}
       <Image
         src="/Roshni_Sodhi.jpeg"
         alt="Dr. Roshni Sodhi"
@@ -29,49 +28,61 @@ export default function HeroSection() {
         priority
         sizes="100vw"
         quality={90}
-        className="absolute inset-0 h-full w-full object-contain object-top md:object-cover pointer-events-none select-none brightness-[1.08] z-10"
+        className="absolute inset-0 hidden h-full w-full object-cover object-top pointer-events-none select-none brightness-[1.08] md:block"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/10 to-slate-950/85 md:hidden z-20" />
-      <div className="hidden md:block absolute inset-0 bg-gradient-to-b from-slate-950/65 via-transparent to-transparent lg:bg-gradient-to-b lg:from-black/60 lg:via-black/25 lg:to-transparent z-20" />
+      <div className="absolute inset-0 hidden bg-gradient-to-b from-slate-950/65 via-transparent to-transparent lg:bg-gradient-to-b lg:from-black/60 lg:via-black/25 lg:to-transparent md:block" />
 
       <div className="relative z-30 w-full">
         {/* Mobile layout */}
-        <div className="md:hidden relative min-h-[580px] flex flex-col px-4 pt-6 pb-6">
-          {/* Text overlay on the upper right */}
-          <div className="absolute top-4 right-4 flex flex-col items-end text-right space-y-2 max-w-[60%]">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              className="text-lg font-semibold leading-tight drop-shadow-lg text-white"
-            >
-              Dr. Roshni Sodhi
-            </motion.h1>
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.35 }}
-              className="text-xs text-white/90 leading-snug"
-            >
-              <span className="block">Lactation Professional</span>
-              <span className="block">Pediatrician &amp; EQ Coach</span>
-            </motion.h2>
+        <div className="md:hidden">
+          <div className="relative w-full overflow-hidden">
+            <Image
+              src="/Roshni_Sodhi.jpeg"
+              alt="Dr. Roshni Sodhi"
+              width={900}
+              height={1200}
+              priority
+              sizes="100vw"
+              quality={90}
+              className="block h-auto w-full object-cover object-top"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950/80" />
 
-            <div className="flex w-full flex-col gap-1.5">
-              {[
-                { href: '/appointment?type=video', label: 'Video Call Doctor' },
-                { href: '/appointment?type=visit', label: 'Visit Doctor' },
-              ].map((cta) => (
-                <motion.a
-                  key={cta.href}
-                  href={cta.href}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center rounded-lg bg-white/90 px-3 py-2 text-xs font-semibold text-brand-900 shadow-md shadow-black/20"
-                >
-                  {cta.label}
-                </motion.a>
-              ))}
+            <div className="absolute inset-x-4 bottom-4 flex flex-col items-end gap-2 text-right">
+              <motion.h1
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35 }}
+                className="text-lg font-semibold leading-tight drop-shadow-lg text-white"
+              >
+                Dr. Roshni Sodhi
+              </motion.h1>
+              <motion.h2
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.08, duration: 0.35 }}
+                className="text-xs text-white/90 leading-snug"
+              >
+                <span className="block">Lactation Professional</span>
+                <span className="block">Pediatrician &amp; EQ Coach</span>
+              </motion.h2>
+
+              <div className="flex w-full flex-col gap-1.5">
+                {[
+                  { href: '/appointment?type=video', label: 'Video Call Doctor' },
+                  { href: '/appointment?type=visit', label: 'Visit Doctor' },
+                ].map((cta) => (
+                  <motion.a
+                    key={cta.href}
+                    href={cta.href}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex w-[70%] self-end items-center justify-center rounded-lg bg-white/90 px-3 py-2 text-xs font-semibold text-brand-900 shadow-md shadow-black/20"
+                  >
+                    {cta.label}
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
