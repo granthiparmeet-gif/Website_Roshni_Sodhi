@@ -153,16 +153,21 @@ export default function HeroSection() {
                   href={cta.href}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center justify-center rounded-xl bg-[#0A66FF] px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base font-semibold text-white shadow-lg shadow-brand-900/30 transition-colors hover:bg-[#0550d4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="inline-flex items-center justify-center rounded-xl bg-brand-900 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base font-semibold text-white shadow-lg shadow-brand-900/30 transition-colors hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   {cta.label}
                 </motion.a>
               ))}
             </div>
 
-            <dl className="hidden md:grid md:ml-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-left md:text-right text-white/85 text-sm sm:text-base">
-              {heroHighlights.map((item) => (
-                <div key={item.value} className="rounded-2xl border border-white/15 bg-white/5 px-4 py-3 backdrop-blur">
+            <dl className="hidden md:grid md:ml-auto grid-cols-1 md:grid-cols-2 gap-3 text-left md:text-right text-white/85 text-sm sm:text-base">
+              {heroHighlights.map((item, index) => (
+                <div
+                  key={item.value}
+                  className={`rounded-2xl border border-white/15 bg-white/5 px-4 py-3 backdrop-blur ${
+                    index === 2 ? 'md:col-span-2 md:justify-self-center md:max-w-md md:text-center' : ''
+                  }`}
+                >
                   <dt className="text-xl sm:text-2xl font-semibold text-white">{item.value}</dt>
                   <dd className="text-xs sm:text-sm uppercase tracking-wide text-white/70">{item.label}</dd>
                 </div>

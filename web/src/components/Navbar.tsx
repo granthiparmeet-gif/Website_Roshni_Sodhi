@@ -40,10 +40,10 @@ export default function Navbar() {
           >
             Dr. Roshni Sodhi
           </Link>
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          <Link href="/about" className="hover:underline">FAQ</Link>
-          <Link href="/past-events" className="hover:underline">Past Events</Link>
-          <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-2 text-white shadow-lg shadow-brand-900/30 transition-all hover:-translate-y-0.5 hover:bg-brand-700">
+        <nav className="hidden md:flex items-center gap-12 text-sm xl:gap-14">
+          <Link href="/about" className="hover:underline transform transition-transform duration-200 origin-left hover:scale-150">FAQ</Link>
+          <Link href="/past-events" className="hover:underline transform transition-transform duration-200 origin-left hover:scale-150">Past Events</Link>
+          <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-brand-900 px-4 py-2 text-white shadow-lg shadow-brand-900/30 transform transition-all hover:-translate-y-0.5 hover:bg-brand-700 hover:scale-150 origin-left">
             <span className="inline-block h-2 w-2 rounded-full bg-emerald-300 animate-pulse" />
             Contact
           </Link>
@@ -87,7 +87,7 @@ export default function Navbar() {
               <p>Dr.Sodhi&apos;s Kewalcare Hospital</p>
               <p>Osmanpura, Aurangabad, Maharashtra</p>
             </div>
-            <Link href="/contact" onClick={() => setOpen(false)} className="rounded-full bg-brand-600 text-white px-4 py-2 w-max text-center shadow hover:bg-brand-700 transition-colors">Contact</Link>
+            <Link href="/contact" onClick={() => setOpen(false)} className="rounded-full bg-brand-900 text-white px-4 py-2 w-max text-center shadow hover:bg-brand-700 transition-colors">Contact</Link>
           </div>
         </div>
       )}
