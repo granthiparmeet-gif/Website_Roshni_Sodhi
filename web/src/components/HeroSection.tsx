@@ -70,7 +70,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="text-lg font-semibold leading-tight drop-shadow-lg text-white"
+                className="text-[1.41rem] font-semibold leading-tight drop-shadow-lg text-white"
               >
                 Dr. Roshni Sodhi
               </motion.h1>
@@ -78,7 +78,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.08, duration: 0.35 }}
-                className="text-xs text-white/90 leading-snug"
+                className="text-[0.71rem] text-white/90 leading-snug"
               >
                 <span className="block">Lactation Professional</span>
                 <span className="block">Pediatrician &amp; EQ Coach</span>
@@ -113,9 +113,9 @@ export default function HeroSection() {
                 href={cta.href}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex w-full items-center justify-center rounded-lg bg-brand-900 px-3 py-2 text-sm font-semibold text-white shadow-md shadow-black/25"
+                className="mobile-cta-pulse inline-flex w-full items-center justify-center rounded-lg bg-brand-900 px-3 py-2 text-sm font-semibold text-white shadow-md shadow-black/25"
               >
-                {cta.label}
+                <span>{cta.label}</span>
               </motion.a>
             ))}
           </div>
