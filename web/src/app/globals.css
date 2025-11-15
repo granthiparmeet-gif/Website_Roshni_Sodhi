@@ -108,6 +108,20 @@ body {
     transition: none !important;
   }
 
+  .qualification-card {
+    min-height: 3.75rem;
+    padding: 0 0.75rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qualification-card p {
+    padding-left: 0 !important;
+    text-align: center;
+  }
+
   .about-point.mobile-animate {
     animation: zoomBounceMobile 0.6s ease-out forwards !important;
     animation-fill-mode: forwards !important;

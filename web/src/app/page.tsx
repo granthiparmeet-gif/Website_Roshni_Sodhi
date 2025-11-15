@@ -122,7 +122,7 @@ function AnimatedQualificationsOnScroll() {
     <section
       id="about"
       ref={sectionRef}
-      className="about-section container mx-auto max-w-4xl mt-10 sm:mt-14 mb-10 px-4 sm:px-6 rounded-3xl bg-[#e4edff] md:bg-white/70 backdrop-blur py-6 sm:py-8 shadow-xl border border-white/60"
+      className="about-section container mx-auto max-w-4xl mt-2.5 sm:mt-12 md:mt-14 mb-10 px-4 sm:px-6 rounded-3xl bg-[#e4edff] md:bg-white/70 backdrop-blur py-6 sm:py-8 shadow-xl border border-white/60"
     >
       <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-3">About Me</h2>
       <p className="text-base sm:text-lg text-gray-700 mb-5 sm:mb-7">{about.intro}</p>

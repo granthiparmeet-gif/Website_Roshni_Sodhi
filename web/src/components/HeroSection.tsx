@@ -7,6 +7,23 @@ const heroHighlights = [
   { value: 'EQ Coach', label: 'Six Seconds USA' },
 ];
 
+const highlightListVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { delayChildren: 0.6, staggerChildren: 0.2 },
+  },
+};
+
+const highlightItemVariants = {
+  hidden: { opacity: 0, x: 30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: 'spring', stiffness: 220, damping: 26 },
+  },
+};
+
 export default function HeroSection() {
   return (
     <section className="hero-wrapper relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-900 text-white lg:bg-black">
@@ -46,9 +63,9 @@ export default function HeroSection() {
               quality={90}
               className="block h-auto w-full object-cover object-top"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-transparent to-slate-950/80" />
 
-            <div className="absolute top-4 right-4 flex flex-col items-end gap-2 text-right max-w-[65%]">
+            <div className="absolute top-0 right-4 flex flex-col items-end gap-0.5 text-right max-w-[60%]">
               <motion.h1
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -66,6 +83,24 @@ export default function HeroSection() {
                 <span className="block">Lactation Professional</span>
                 <span className="block">Pediatrician &amp; EQ Coach</span>
               </motion.h2>
+              <motion.dl
+                variants={highlightListVariants}
+                initial="hidden"
+                animate="visible"
+                className="mt-0.5 flex flex-col items-end gap-0.5 text-right"
+              >
+                {heroHighlights.map((item) => (
+                  <motion.div
+                    key={`${item.value}-${item.label}`}
+                    variants={highlightItemVariants}
+                    className="w-max self-end rounded-xl border border-white/20 bg-white/10/60 px-1.5 py-0.5 text-right text-white/85 backdrop-blur"
+                  >
+                    <span className="text-[9px] font-medium tracking-wide text-white whitespace-nowrap">
+                      {item.value} {item.label}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.dl>
             </div>
           </div>
           <div className="flex flex-col gap-2 px-4 py-4">
@@ -78,7 +113,7 @@ export default function HeroSection() {
                 href={cta.href}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex w-full items-center justify-center rounded-lg bg-white/95 px-3 py-2.5 text-xs font-semibold text-brand-900 shadow-md shadow-black/20"
+                className="inline-flex w-full items-center justify-center rounded-lg bg-brand-900 px-3 py-2 text-sm font-semibold text-white shadow-md shadow-black/25"
               >
                 {cta.label}
               </motion.a>
