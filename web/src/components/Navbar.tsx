@@ -20,10 +20,15 @@ export default function Navbar() {
       <div className="hidden md:block bg-brand-50 text-brand-900">
         <div className="container flex items-center justify-between py-2 text-sm">
           <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-2">
+            <a
+              href="https://maps.app.goo.gl/DwMqAntXqudy2YJJ6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 hover:underline"
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" className="text-brand-700"><path fill="currentColor" d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7Zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5Z"/></svg>
               <span>Dr.Sodhi&apos;s Kewalcare Hospital, Osmanpura, Aurangabad, Maharashtra</span>
-            </span>
+            </a>
           </div>
           <a href="tel:9049005464" className="inline-flex items-center gap-2 font-medium hover:underline">
             <svg width="16" height="16" viewBox="0 0 24 24" className="text-brand-700 phone-ring"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.4 22 2 13.6 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2Z"/></svg>
@@ -83,10 +88,16 @@ export default function Navbar() {
               </svg>
               <span className="font-semibold text-brand-900">9049005464</span>
             </a>
-            <div className="text-sm text-gray-600 py-2">
+            <a
+              href="https://maps.app.goo.gl/DwMqAntXqudy2YJJ6"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="block text-sm text-gray-600 py-2 hover:underline"
+            >
               <p>Dr.Sodhi&apos;s Kewalcare Hospital</p>
               <p>Osmanpura, Aurangabad, Maharashtra</p>
-            </div>
+            </a>
             <Link href="/contact" onClick={() => setOpen(false)} className="rounded-full bg-brand-900 text-white px-4 py-2 w-max text-center shadow hover:bg-brand-700 transition-colors">Contact</Link>
           </div>
         </div>
