@@ -22,7 +22,7 @@ export default function FAQPage() {
       <main className="container py-8 sm:py-12 md:py-16 px-4 sm:px-6">
         <h1 className="text-white md:text-brand-900 text-2xl sm:text-3xl md:text-4xl font-semibold">FAQ</h1>
         <section className="mt-6 sm:mt-8">
-          <div className="flex flex-col gap-4 sm:gap-5 md:flex-row md:flex-wrap">
+          <div className="flex flex-col gap-4 sm:gap-5 md:flex-row md:flex-wrap items-stretch md:items-start">
             {qa.map((item, i) => (
               <motion.div
                 key={item.q}
