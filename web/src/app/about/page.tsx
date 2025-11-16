@@ -22,7 +22,7 @@ export default function FAQPage() {
       <main className="container py-8 sm:py-12 md:py-16 px-4 sm:px-6">
         <h1 className="text-white md:text-brand-900 text-2xl sm:text-3xl md:text-4xl font-semibold">FAQ</h1>
         <section className="mt-6 sm:mt-8">
-          <div className="grid gap-4 sm:gap-5 md:grid-cols-2">
+          <div className="flex flex-col gap-4 sm:gap-5 md:flex-row md:flex-wrap">
             {qa.map((item, i) => (
               <motion.div
                 key={item.q}
@@ -37,7 +37,7 @@ export default function FAQPage() {
                   backgroundColor: 'var(--tw-bg-opacity)',
                   boxShadow: '0 8px 36px 0 rgba(32, 51, 120, 0.13)',
                 }}
-                className={`overflow-hidden bg-white border border-gray-200 rounded-xl transition-all duration-200 cursor-pointer shadow-sm ${open===i?'ring-2 ring-brand-600 bg-brand-50':'hover:ring-2 hover:ring-brand-600'}`}
+                className={`w-full md:basis-[calc(50%-0.625rem)] overflow-hidden bg-white border border-gray-200 rounded-xl transition-all duration-200 cursor-pointer shadow-sm ${open===i?'ring-2 ring-brand-600 bg-brand-50':'hover:ring-2 hover:ring-brand-600'}`}
                 onClick={() => setOpen(open === i ? null : i)}
               >
                 <div className={`px-4 sm:px-6 py-4 sm:py-5 flex items-center text-base sm:text-lg md:text-xl font-semibold ${open===i ? 'text-brand-700' : 'text-brand-900'}`}>
