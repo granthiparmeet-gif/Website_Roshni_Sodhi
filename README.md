@@ -9,12 +9,12 @@ npm --prefix web run dev
 
 Open `http://localhost:3000` in your browser.
 
-## Deploying to Render
+## Deploying to Vercel
 
-1. Push the latest commits to GitHub; the `render.yaml` at the repository root instructs Render to build from the `web` directory using `npm run build` and `npm run start`.
-2. In the Render dashboard tie the service to your GitHub repository, and keep the default branch aligned with your production branch (typically `main`).
-3. Add the `RESEND_API_KEY` environment variable under the service's Environment tab so `web/src/app/api/contact/route.ts` can send e-mails.
-4. Confirm `nodeVersion: 20` (Render respects the `nodeVersion` key) and let auto deploy push production builds on each GitHub merge.
+1. Push the latest commits to GitHub. Vercel will auto-detect this Next.js App Router project inside the `web` folder and run `npm run build` from there.
+2. Link the GitHub repository in the Vercel dashboard and point the project root to `/web` so it builds with your `package.json`.
+3. Provision the `RESEND_API_KEY` environment variable under Project Settings → Environment to keep `web/src/app/api/contact/route.ts` working.
+4. Vercel hosts the built app and API endpoints without extra configuration, so each merge to the production branch redeploys automatically.
 
 ## Codex / Restricted Sandboxes
 
