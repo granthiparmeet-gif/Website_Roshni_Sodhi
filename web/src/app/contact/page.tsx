@@ -42,9 +42,9 @@ export default function ContactPage() {
       <Navbar />
       <main className="container py-8 sm:py-12 md:py-16 px-4 sm:px-6">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold">Contact</h1>
-        <div className="mt-4 sm:mt-6 grid gap-4 sm:gap-6 max-w-2xl text-gray-700 text-sm sm:text-base">
-          <p><strong>Address:</strong> {contact.address}</p>
-          <p><strong>Phone:</strong> <a href={`tel:${contact.phone}`} className="underline">{contact.phone}</a></p>
+        <div className="mt-4 sm:mt-6 grid gap-4 sm:gap-6 max-w-2xl text-sm sm:text-base">
+          <p className="text-white md:text-gray-700"><strong>Address:</strong> {contact.address}</p>
+          <p className="text-white md:text-gray-700"><strong>Phone:</strong> <a href={`tel:${contact.phone}`} className="underline">{contact.phone}</a></p>
           <p>
             <a href={contact.appointmentUrl} target="_blank" rel="noreferrer" className="inline-block bg-black text-white px-4 sm:px-5 py-2 sm:py-3 rounded text-sm sm:text-base">
               Book an Appointment
