@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Moontime&display=swap');
 @font-face {
   font-family: 'Amsterdam Handwriting';
   src: url('/AmsterdamHandwriting.ttf') format('truetype');
@@ -26,6 +25,7 @@ body {
   min-height: 100%;
   color: rgb(var(--foreground));
   background: radial-gradient(circle at top, rgba(80,157,255,0.18), transparent 45%), radial-gradient(circle at 20% 80%, rgba(15,63,140,0.12), transparent 35%), #f7f9fc;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
 .container {
@@ -35,9 +35,8 @@ body {
   padding-right: 1rem;
   max-width: 1200px;
 }
-
 .logo-font {
-  font-family: 'Amsterdam Handwriting', 'Moontime', var(--font-playfair), 'Times New Roman', serif !important;
+  font-family: 'Amsterdam Handwriting', 'Times New Roman', serif !important;
 }
 
 .hero-wrapper {
@@ -297,6 +296,6 @@ body {
 
 @keyframes desktopHeartbeat {
   0% { transform: scale(1); }
-  40% { transform: scale(1.15); }
+  40% { transform: scale(1.1); }
   100% { transform: scale(1); }
 }

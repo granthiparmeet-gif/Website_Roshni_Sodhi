@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: website-builder
+    env: node
+    root: web
+    buildCommand: npm run build
+    startCommand: npm run start
+    autoDeploy: true
+    plan: free
+    region: oregon
+    envVars:
+      - key: RESEND_API_KEY
+    healthCheckPath: /
+    nodeVersion: 20

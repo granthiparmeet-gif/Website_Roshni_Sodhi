@@ -2,10 +2,6 @@ import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
-import { Open_Sans, Playfair_Display } from 'next/font/google';
-
-const openSans = Open_Sans({ subsets: ['latin'], weight: ['400','500','600','700'], display: 'swap' });
-const playfairDisplay = Playfair_Display({ subsets: ['latin'], weight: ['400','500','600','700'], display: 'swap', variable: '--font-playfair' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.roshnisodhi.com'),
@@ -39,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
-      <body className={`${openSans.className} ${playfairDisplay.variable}`}>
+      <body className="antialiased">
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Analytics />
