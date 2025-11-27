@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 
 const heroHighlights = [
   { value: '19+ yrs', label: 'Pediatric care' },
@@ -7,7 +8,7 @@ const heroHighlights = [
   { value: 'EQ Coach', label: 'Six Seconds USA' },
 ];
 
-const highlightListVariants = {
+const highlightListVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -15,7 +16,7 @@ const highlightListVariants = {
   },
 };
 
-const highlightItemVariants = {
+const highlightItemVariants: Variants = {
   hidden: { opacity: 0, x: 30 },
   visible: {
     opacity: 1,
