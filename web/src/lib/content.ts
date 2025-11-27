@@ -1,7 +1,7 @@
 export const contact = {
   phone: "9049005464",
   address: "Dr.Sodhi's Kewalcare Hospital, Osmanpura, Aurangabad, Maharashtra",
-  appointmentUrl: "https://roshnisodhi.com/?p=111",
+  appointmentUrl: "/appointment?type=visit",
 };
 
 export const about = {
